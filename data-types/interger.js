@@ -1,4 +1,5 @@
 const setReferenceAction = require('../utils/data-types/set-reference-action')
+const build = require('../utils/data-types/build')
 
 module.exports = integerDataType
 
@@ -14,7 +15,8 @@ function integerDataType() {
       isNullable: false,
       defaultValue: undefined,
       references: undefined,
-      comment: undefined
+      comment: undefined,
+      checkConstraint: undefined
     },
 
     // ==========================||
@@ -103,10 +105,21 @@ function integerDataType() {
     /**
      * Sets a comment for the integer data type.
      *
-     * @param {string} comment - The comment to set for the column.
+     * @param {string} text - The comment to set for the column.
      */
-    comment(comment) {
-      this.options.comment = comment
+    comment(text) {
+      this.options.comment = text
+
+      return this
+    },
+
+    /**
+     * Sets a check constraint for the date data type.
+     *
+     * @param {string} constraint - The check constraint to apply.
+     */
+    checkConstraint(constraint) {
+      this.options.checkConstraint = constraint
 
       return this
     },
@@ -115,26 +128,7 @@ function integerDataType() {
     //          METHODS          ||
     // ==========================||
     build() {
-      const components = []
-
-      components.push(this.options.dataType)
-
-      if (this.options.isPrimaryKey) components.push('PRIMARY KEY')
-      if (this.options.isUnique) components.push('UNIQUE')
-
-      components.push(this.options.isNullable ? 'NULL' : 'NOT NULL')
-
-      if (this.options.defaultValue !== undefined) components.push(`DEFAULT ${this.options.defaultValue}`)
-      if (this.options.comment) components.push(`COMMENT '${this.options.comment}'`)
-
-      if (this.options.references) {
-        components.push(`REFERENCES "${this.options.references.model.tableName}" ("${this.options.references.column}")`)
-
-        if (this.options.references.onDelete) components.push(`ON DELETE ${this.options.references.onDelete}`)
-        if (this.options.references.onUpdate) components.push(`ON UPDATE ${this.options.references.onUpdate}`)
-      }
-
-      return components.join(' ')
+      return build(this.options)
     }
   }
 }

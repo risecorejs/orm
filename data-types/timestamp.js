@@ -1,3 +1,5 @@
+const build = require('../utils/data-types/build')
+
 module.exports = timestampDataType
 
 function timestampDataType() {
@@ -28,10 +30,10 @@ function timestampDataType() {
     /**
      * Sets a comment for the integer data type.
      *
-     * @param {string} comment - The comment to set for the column.
+     * @param {string} text - The comment to set for the column.
      */
-    comment(comment) {
-      this.options.comment = comment
+    comment(text) {
+      this.options.comment = text
 
       return this
     },
@@ -40,14 +42,7 @@ function timestampDataType() {
     //          METHODS          ||
     // ==========================||
     build() {
-      const components = []
-
-      components.push(this.options.dataType)
-      components.push(this.options.isNullable ? 'NULL' : 'NOT NULL')
-
-      if (this.options.comment) components.push(`COMMENT '${this.options.comment}'`)
-
-      return components.join(' ')
+      return build(this.options)
     }
   }
 }

@@ -1,3 +1,5 @@
+const build = require('../utils/data-types/build')
+
 module.exports = enumDataType
 
 /**
@@ -5,12 +7,13 @@ module.exports = enumDataType
  *
  * @param {...string|string[]} enumerations - Enumeration values as multiple string arguments or a single array of strings.
  * @throws {TypeError} Throws an error if any of the enumerations is not of type string.
- *
- * @example
- * enumDataType('ONE', 'TWO', 'THREE')
- * enumDataType(['ONE', 'TWO', 'THREE'])
+ * @throws {Error} Throws an error if enumerations is empty.
  */
 function enumDataType(...enumerations) {
+  if (enumerations.length === 0) {
+    throw new Error('Enumerations array cannot be empty.')
+  }
+
   if (enumerations.length === 1 && Array.isArray(enumerations[0])) {
     enumerations = enumerations[0]
   }
@@ -64,10 +67,10 @@ function enumDataType(...enumerations) {
     /**
      * Sets a comment for the integer data type.
      *
-     * @param {string} comment - The comment to set for the column.
+     * @param {string} text - The comment to set for the column.
      */
-    comment(comment) {
-      this.options.comment = comment
+    comment(text) {
+      this.options.comment = text
 
       return this
     },
@@ -76,15 +79,7 @@ function enumDataType(...enumerations) {
     //          METHODS          ||
     // ==========================||
     build() {
-      const components = []
-
-      components.push(`${this.options.dataType}(${this.options.enumerations.map((val) => `'${val}'`).join(', ')})`)
-      components.push(this.options.isNullable ? 'NULL' : 'NOT NULL')
-
-      if (this.options.defaultValue !== undefined) components.push(`DEFAULT '${this.options.defaultValue}'`)
-      if (this.options.comment) components.push(`COMMENT '${this.options.comment}'`)
-
-      return components.join(' ')
+      return build(this.options)
     }
   }
 }

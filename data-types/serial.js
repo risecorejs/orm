@@ -1,3 +1,5 @@
+const build = require('../utils/data-types/build')
+
 module.exports = serialDataType
 
 function serialDataType() {
@@ -33,10 +35,10 @@ function serialDataType() {
     /**
      * Sets a comment for the integer data type.
      *
-     * @param {string} comment - The comment to set for the column.
+     * @param {string} text - The comment to set for the column.
      */
-    comment(comment) {
-      this.options.comment = comment
+    comment(text) {
+      this.options.comment = text
 
       return this
     },
@@ -45,14 +47,7 @@ function serialDataType() {
     //          METHODS          ||
     // ==========================||
     build() {
-      const components = []
-
-      components.push(this.options.dataType)
-
-      if (this.options.isPrimaryKey) components.push('PRIMARY KEY')
-      if (this.options.comment) components.push(`COMMENT '${this.options.comment}'`)
-
-      return components.join(' ')
+      return build(this.options)
     }
   }
 }

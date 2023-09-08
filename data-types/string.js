@@ -1,15 +1,26 @@
 const setReferenceAction = require('../utils/data-types/set-reference-action')
+const build = require('../utils/data-types/build')
 
 module.exports = stringDataType
 
-function stringDataType() {
+/**
+ * Creates a data type configuration for a string.
+ *
+ * @param {number} [length=255] - The maximum length of the string. Defaults to 255.
+ * @throws {TypeError} Throws an error if the provided length is not a positive integer.
+ */
+function stringDataType(length = 255) {
+  if (typeof length !== 'number' || length <= 0 || !Number.isInteger(length)) {
+    throw new TypeError('Length must be a positive integer.')
+  }
+
   return {
     // ==========================||
     //          OPTIONS          ||
     // ==========================||
     options: {
       dataType: 'VARCHAR',
-      length: 255,
+      length,
       isPrimaryKey: false,
       isUnique: false,
       isNullable: false,
@@ -23,29 +34,16 @@ function stringDataType() {
     // ==========================||
     primaryKey() {
       this.options.isPrimaryKey = true
+
       return this
     },
     unique() {
       this.options.isUnique = true
+
       return this
     },
     nullable() {
       this.options.isNullable = true
-      return this
-    },
-
-    /**
-     * Sets the length for the string data type.
-     *
-     * @param {number} num - The length for the string data type.
-     * @throws {TypeError} If the provided length is not a number.
-     */
-    length(num) {
-      if (typeof num !== 'number') {
-        throw new TypeError('Expected a number for the string length.')
-      }
-
-      this.options.length = num
 
       return this
     },
@@ -107,10 +105,10 @@ function stringDataType() {
     /**
      * Sets a comment for the integer data type.
      *
-     * @param {string} comment - The comment to set for the column.
+     * @param {string} text - The comment to set for the column.
      */
-    comment(comment) {
-      this.options.comment = comment
+    comment(text) {
+      this.options.comment = text
 
       return this
     },
@@ -119,26 +117,7 @@ function stringDataType() {
     //          METHODS          ||
     // ==========================||
     build() {
-      const components = []
-
-      components.push(`${this.options.dataType}(${this.options.length})`)
-
-      if (this.options.isPrimaryKey) components.push('PRIMARY KEY')
-      if (this.options.isUnique) components.push('UNIQUE')
-
-      components.push(this.options.isNullable ? 'NULL' : 'NOT NULL')
-
-      if (this.options.defaultValue !== undefined) components.push(`DEFAULT '${this.options.defaultValue}'`)
-      if (this.options.comment) components.push(`COMMENT '${this.options.comment}'`)
-
-      if (this.options.references) {
-        components.push(`REFERENCES "${this.options.references.model.tableName}" ("${this.options.references.column}")`)
-
-        if (this.options.references.onDelete) components.push(`ON DELETE ${this.options.references.onDelete}`)
-        if (this.options.references.onUpdate) components.push(`ON UPDATE ${this.options.references.onUpdate}`)
-      }
-
-      return components.join(' ')
+      return build(this.options)
     }
   }
 }
