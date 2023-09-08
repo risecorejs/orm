@@ -12,8 +12,8 @@ function integerDataType() {
       isNullable: false,
       defaultValue: undefined,
       references: undefined,
-      comment: undefined,
-      checkConstraint: undefined
+      checkConstraint: undefined,
+      comment: undefined
     },
 
     /**
@@ -122,23 +122,23 @@ function integerDataType() {
     },
 
     /**
-     * Sets a comment for the integer data type.
-     *
-     * @param {string} text - The comment to set for the column.
-     */
-    comment(text) {
-      this.options.comment = text
-
-      return this
-    },
-
-    /**
      * Sets a check constraint for the date data type.
      *
      * @param {string} constraint - The check constraint to apply.
      */
     checkConstraint(constraint) {
       this.options.checkConstraint = constraint
+
+      return this
+    },
+
+    /**
+     * Sets a comment for the column.
+     *
+     * @param {string} text - The comment to set for the column.
+     */
+    comment(text) {
+      this.options.comment = text
 
       return this
     },

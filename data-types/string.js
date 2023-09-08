@@ -15,9 +15,6 @@ function stringDataType(length = 255) {
   }
 
   return {
-    // ==========================||
-    //          OPTIONS          ||
-    // ==========================||
     options: {
       dataType: 'VARCHAR',
       length,
@@ -26,6 +23,7 @@ function stringDataType(length = 255) {
       isNullable: false,
       defaultValue: undefined,
       references: undefined,
+      checkConstraint: undefined,
       comment: undefined
     },
 
@@ -117,7 +115,18 @@ function stringDataType(length = 255) {
     },
 
     /**
-     * Sets a comment for the integer data type.
+     * Sets a check constraint for the date data type.
+     *
+     * @param {string} constraint - The check constraint to apply.
+     */
+    checkConstraint(constraint) {
+      this.options.checkConstraint = constraint
+
+      return this
+    },
+
+    /**
+     * Sets a comment for the column.
      *
      * @param {string} text - The comment to set for the column.
      */

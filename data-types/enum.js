@@ -62,7 +62,7 @@ function enumDataType(...enumerations) {
     },
 
     /**
-     * Sets a comment for the integer data type.
+     * Sets a comment for the column.
      *
      * @param {string} text - The comment to set for the column.
      */
