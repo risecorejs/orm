@@ -7,6 +7,7 @@ function textDataType() {
     options: {
       dataType: 'TEXT',
       isNullable: false,
+      defaultValue: undefined,
       comment: undefined
     },
 
@@ -15,6 +16,22 @@ function textDataType() {
      */
     nullable() {
       this.options.isNullable = true
+
+      return this
+    },
+
+    /**
+     * Sets the default value for the text data type.
+     *
+     * @param {string} val - The string value to set as default.
+     * @throws {TypeError} If the provided value is not a string.
+     */
+    defaultValue(val) {
+      if (typeof val !== 'string') {
+        throw new TypeError('Expected a string value for default value.')
+      }
+
+      this.options.defaultValue = val
 
       return this
     },

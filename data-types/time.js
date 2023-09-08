@@ -8,6 +8,7 @@ function timeDataType() {
       dataType: 'TIME',
       isNullable: false,
       defaultValue: undefined,
+      checkConstraint: undefined,
       comment: undefined
     },
 
@@ -37,6 +38,17 @@ function timeDataType() {
       } else {
         throw new Error('Invalid time format for defaultValue. Expected a Date object or a string in HH:MM:SS format.')
       }
+
+      return this
+    },
+
+    /**
+     * Sets a check constraint for the date data type.
+     *
+     * @param {string} constraint - The check constraint to apply.
+     */
+    checkConstraint(constraint) {
+      this.options.checkConstraint = constraint
 
       return this
     },

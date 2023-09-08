@@ -7,6 +7,7 @@ function timestampDataType() {
     options: {
       dataType: 'TIMESTAMP',
       isNullable: false,
+      checkConstraint: undefined,
       comment: undefined
     },
 
@@ -24,6 +25,17 @@ function timestampDataType() {
      */
     nullable() {
       this.options.isNullable = true
+
+      return this
+    },
+
+    /**
+     * Sets a check constraint for the date data type.
+     *
+     * @param {string} constraint - The check constraint to apply.
+     */
+    checkConstraint(constraint) {
+      this.options.checkConstraint = constraint
 
       return this
     },
