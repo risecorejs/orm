@@ -1,11 +1,11 @@
 module.exports = {
-  SERIAL: require('./serial'),
+  BOOLEAN: require('./boolean'),
+  DATE: require('./date'),
+  ENUM: require('./enum'),
   INTEGER: require('./interger'),
+  SERIAL: require('./serial'),
   STRING: require('./string'),
   TEXT: require('./text'),
-  ENUM: require('./enum'),
-  BOOLEAN: require('./boolean'),
-  TIMESTAMP: require('./timestamp'),
-  DATE: require('./date'),
-  TIME: require('./time')
+  TIME: require('./time'),
+  TIMESTAMP: require('./timestamp')
 }
