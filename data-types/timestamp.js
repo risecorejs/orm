@@ -21,6 +21,10 @@ function timestampDataType() {
 
       return this
     },
+
+    /**
+     * Allows the data type to have nullable values, meaning it can have NULL values in the column.
+     */
     nullable() {
       this.options.isNullable = true
 
@@ -38,9 +42,9 @@ function timestampDataType() {
       return this
     },
 
-    // ==========================||
-    //          METHODS          ||
-    // ==========================||
+    /**
+     * Builds the SQL representation of the data type configuration.
+     */
     build() {
       return build(this.options)
     }

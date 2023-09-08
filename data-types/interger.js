@@ -5,9 +5,6 @@ module.exports = integerDataType
 
 function integerDataType() {
   return {
-    // ==========================||
-    //          OPTIONS          ||
-    // ==========================||
     options: {
       dataType: 'INTEGER',
       isPrimaryKey: false,
@@ -19,29 +16,45 @@ function integerDataType() {
       checkConstraint: undefined
     },
 
-    // ==========================||
-    //          SETTERS          ||
-    // ==========================||
+    /**
+     * Sets the data type to SMALLINT.
+     */
     small() {
       this.options.dataType = 'SMALLINT'
 
       return this
     },
+
+    /**
+     * Sets the data type to BIGINT.
+     */
     big() {
       this.options.dataType = 'BIGINT'
 
       return this
     },
+
+    /**
+     * Sets the column as a primary key.
+     */
     primaryKey() {
       this.options.isPrimaryKey = true
 
       return this
     },
+
+    /**
+     * Sets the unique constraint for the data type. This constraint ensures that all values in the column are unique.
+     */
     unique() {
       this.options.isUnique = true
 
       return this
     },
+
+    /**
+     * Allows the data type to have nullable values, meaning it can have NULL values in the column.
+     */
     nullable() {
       this.options.isNullable = true
 
@@ -124,9 +137,9 @@ function integerDataType() {
       return this
     },
 
-    // ==========================||
-    //          METHODS          ||
-    // ==========================||
+    /**
+     * Builds the SQL representation of the data type configuration.
+     */
     build() {
       return build(this.options)
     }

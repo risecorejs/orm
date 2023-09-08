@@ -4,9 +4,6 @@ module.exports = dateDataType
 
 function dateDataType() {
   return {
-    // ==========================||
-    //          OPTIONS          ||
-    // ==========================||
     options: {
       dataType: 'DATE',
       isUnique: false,
@@ -16,14 +13,18 @@ function dateDataType() {
       checkConstraint: undefined
     },
 
-    // ==========================||
-    //          SETTERS          ||
-    // ==========================||
+    /**
+     * Sets the unique constraint for the data type. This constraint ensures that all values in the column are unique.
+     */
     unique() {
       this.options.isUnique = true
 
       return this
     },
+
+    /**
+     * Allows the data type to have nullable values, meaning it can have NULL values in the column.
+     */
     nullable() {
       this.options.isNullable = true
 
@@ -75,9 +76,9 @@ function dateDataType() {
       return this
     },
 
-    // ==========================||
-    //          METHODS          ||
-    // ==========================||
+    /**
+     * Builds the SQL representation of the data type configuration.
+     */
     build() {
       return build(this.options)
     }

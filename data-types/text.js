@@ -13,9 +13,9 @@ function textDataType() {
       comment: undefined
     },
 
-    // ==========================||
-    //          SETTERS          ||
-    // ==========================||
+    /**
+     * Allows the data type to have nullable values, meaning it can have NULL values in the column.
+     */
     nullable() {
       this.options.isNullable = true
 
@@ -33,9 +33,9 @@ function textDataType() {
       return this
     },
 
-    // ==========================||
-    //          METHODS          ||
-    // ==========================||
+    /**
+     * Builds the SQL representation of the data type configuration.
+     */
     build() {
       return build(this.options)
     }

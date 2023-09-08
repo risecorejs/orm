@@ -29,19 +29,27 @@ function stringDataType(length = 255) {
       comment: undefined
     },
 
-    // ==========================||
-    //          SETTERS          ||
-    // ==========================||
+    /**
+     * Sets the column as a primary key.
+     */
     primaryKey() {
       this.options.isPrimaryKey = true
 
       return this
     },
+
+    /**
+     * Sets the unique constraint for the data type. This constraint ensures that all values in the column are unique.
+     */
     unique() {
       this.options.isUnique = true
 
       return this
     },
+
+    /**
+     * Allows the data type to have nullable values, meaning it can have NULL values in the column.
+     */
     nullable() {
       this.options.isNullable = true
 
@@ -113,9 +121,9 @@ function stringDataType(length = 255) {
       return this
     },
 
-    // ==========================||
-    //          METHODS          ||
-    // ==========================||
+    /**
+     * Builds the SQL representation of the data type configuration.
+     */
     build() {
       return build(this.options)
     }

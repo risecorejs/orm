@@ -4,9 +4,6 @@ module.exports = booleanDataType
 
 function booleanDataType() {
   return {
-    // ==========================||
-    //          OPTIONS          ||
-    // ==========================||
     options: {
       dataType: 'BOOLEAN',
       isNullable: false,
@@ -14,9 +11,9 @@ function booleanDataType() {
       comment: undefined
     },
 
-    // ==========================||
-    //          SETTERS          ||
-    // ==========================||
+    /**
+     * Allows the data type to have nullable values, meaning it can have NULL values in the column.
+     */
     nullable() {
       this.options.isNullable = true
 
@@ -50,9 +47,9 @@ function booleanDataType() {
       return this
     },
 
-    // ==========================||
-    //          METHODS          ||
-    // ==========================||
+    /**
+     * Builds the SQL representation of the data type configuration.
+     */
     build() {
       return build(this.options)
     }

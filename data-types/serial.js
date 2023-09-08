@@ -26,6 +26,10 @@ function serialDataType() {
 
       return this
     },
+
+    /**
+     * Sets the column as a primary key.
+     */
     primaryKey() {
       this.options.isPrimaryKey = true
 
@@ -43,9 +47,9 @@ function serialDataType() {
       return this
     },
 
-    // ==========================||
-    //          METHODS          ||
-    // ==========================||
+    /**
+     * Builds the SQL representation of the data type configuration.
+     */
     build() {
       return build(this.options)
     }

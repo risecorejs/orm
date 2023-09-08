@@ -23,9 +23,6 @@ function enumDataType(...enumerations) {
   }
 
   return {
-    // ==========================||
-    //          OPTIONS          ||
-    // ==========================||
     options: {
       dataType: 'ENUM',
       enumerations: enumerations,
@@ -34,9 +31,9 @@ function enumDataType(...enumerations) {
       comment: undefined
     },
 
-    // ==========================||
-    //          SETTERS          ||
-    // ==========================||
+    /**
+     * Allows the data type to have nullable values, meaning it can have NULL values in the column.
+     */
     nullable() {
       this.options.isNullable = true
 
@@ -75,9 +72,9 @@ function enumDataType(...enumerations) {
       return this
     },
 
-    // ==========================||
-    //          METHODS          ||
-    // ==========================||
+    /**
+     * Builds the SQL representation of the data type configuration.
+     */
     build() {
       return build(this.options)
     }
