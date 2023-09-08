@@ -72,6 +72,12 @@ function stringDataType(length = 255) {
       return this
     },
 
+    /**
+     * Sets a reference to another table and column for this data type.
+     *
+     * @param {string} model - The name of the referenced table/model.
+     * @param {string} column - The name of the referenced column in the table/model.
+     */
     references(model, column) {
       this.options.references = { model, column }
 

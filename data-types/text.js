@@ -4,9 +4,6 @@ module.exports = textDataType
 
 function textDataType() {
   return {
-    // ==========================||
-    //          OPTIONS          ||
-    // ==========================||
     options: {
       dataType: 'TEXT',
       isNullable: false,

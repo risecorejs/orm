@@ -4,9 +4,6 @@ module.exports = timeDataType
 
 function timeDataType() {
   return {
-    // ==========================||
-    //          OPTIONS          ||
-    // ==========================||
     options: {
       dataType: 'TIME',
       isNullable: false,

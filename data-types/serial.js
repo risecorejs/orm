@@ -4,23 +4,24 @@ module.exports = serialDataType
 
 function serialDataType() {
   return {
-    // ==========================||
-    //          OPTIONS          ||
-    // ==========================||
     options: {
       dataType: 'SERIAL',
       isPrimaryKey: false,
       comment: undefined
     },
 
-    // ==========================||
-    //          SETTERS          ||
-    // ==========================||
+    /**
+     * Sets the data type to SMALLSERIAL.
+     */
     small() {
       this.options.dataType = 'SMALLSERIAL'
 
       return this
     },
+
+    /**
+     * Sets the data type to BIGSERIAL.
+     */
     big() {
       this.options.dataType = 'BIGSERIAL'
 

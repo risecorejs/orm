@@ -4,18 +4,15 @@ module.exports = timestampDataType
 
 function timestampDataType() {
   return {
-    // ==========================||
-    //          OPTIONS          ||
-    // ==========================||
     options: {
       dataType: 'TIMESTAMP',
       isNullable: false,
       comment: undefined
     },
 
-    // ==========================||
-    //          SETTERS          ||
-    // ==========================||
+    /**
+     * Sets the data type to TIMESTAMPTZ.
+     */
     tz() {
       this.options.dataType = 'TIMESTAMPTZ'
 
