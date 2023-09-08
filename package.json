@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "prettier": "^2.3.2"
+  }
+}
