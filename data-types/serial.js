@@ -7,7 +7,8 @@ function serialDataType() {
     // ==========================||
     options: {
       dataType: 'SERIAL',
-      isPrimaryKey: false
+      isPrimaryKey: false,
+      comment: undefined
     },
 
     // ==========================||
@@ -29,6 +30,17 @@ function serialDataType() {
       return this
     },
 
+    /**
+     * Sets a comment for the integer data type.
+     *
+     * @param {string} comment - The comment to set for the column.
+     */
+    comment(comment) {
+      this.options.comment = comment
+
+      return this
+    },
+
     // ==========================||
     //          METHODS          ||
     // ==========================||
@@ -38,6 +50,7 @@ function serialDataType() {
       components.push(this.options.dataType)
 
       if (this.options.isPrimaryKey) components.push('PRIMARY KEY')
+      if (this.options.comment) components.push(`COMMENT '${this.options.comment}'`)
 
       return components.join(' ')
     }

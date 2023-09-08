@@ -27,7 +27,8 @@ function enumDataType(...enumerations) {
       dataType: 'ENUM',
       enumerations: enumerations,
       isNullable: false,
-      defaultValue: undefined
+      defaultValue: undefined,
+      comment: undefined
     },
 
     // ==========================||
@@ -60,6 +61,17 @@ function enumDataType(...enumerations) {
       return this
     },
 
+    /**
+     * Sets a comment for the integer data type.
+     *
+     * @param {string} comment - The comment to set for the column.
+     */
+    comment(comment) {
+      this.options.comment = comment
+
+      return this
+    },
+
     // ==========================||
     //          METHODS          ||
     // ==========================||
@@ -70,6 +82,7 @@ function enumDataType(...enumerations) {
       components.push(this.options.isNullable ? 'NULL' : 'NOT NULL')
 
       if (this.options.defaultValue !== undefined) components.push(`DEFAULT '${this.options.defaultValue}'`)
+      if (this.options.comment) components.push(`COMMENT '${this.options.comment}'`)
 
       return components.join(' ')
     }
