@@ -7,6 +7,7 @@ function integerDataType() {
   return {
     options: {
       dataType: 'INTEGER',
+      dataTypeAlias: 'INTEGER',
       isPrimaryKey: false,
       isUnique: false,
       isNullable: false,
@@ -80,11 +81,14 @@ function integerDataType() {
     /**
      * Sets a reference to another table and column for this data type.
      *
-     * @param {any} model - The name of the referenced table/model.
+     * @param {object|string} modelOrTableName - The name of the referenced table/model.
      * @param {string} column - The name of the referenced column in the table/model.
      */
-    references(model, column) {
-      this.options.references = { model, column }
+    references(modelOrTableName, column) {
+      this.options.references = {
+        tableName: typeof modelOrTableName === 'string' ? modelOrTableName : modelOrTableName.tableName,
+        column
+      }
 
       return this
     },

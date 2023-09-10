@@ -4,27 +4,16 @@ function build(options) {
   const clauses = []
 
   switch (options.dataType) {
-    case 'BOOLEAN':
-    case 'DATE':
-    case 'SMALLINT':
-    case 'INTEGER':
-    case 'BIGINT':
-    case 'SMALLSERIAL':
-    case 'SERIAL':
-    case 'BIGSERIAL':
-    case 'TEXT':
-    case 'TIME':
-    case 'TIMESTAMP':
-    case 'TIMESTAMPTZ':
-      clauses.push(options.dataType)
-      break
-
     case 'ENUM':
       clauses.push(`${options.dataType}(${options.enumerations.map((val) => `'${val}'`).join(', ')})`)
       break
 
     case 'VARCHAR':
       clauses.push(`${options.dataType}(${options.length})`)
+      break
+
+    default:
+      clauses.push(options.dataType)
       break
   }
 
@@ -53,7 +42,7 @@ function build(options) {
   }
 
   if (options.references) {
-    clauses.push(`REFERENCES "${options.references.model.tableName}" ("${options.references.column}")`)
+    clauses.push(`REFERENCES "${options.references.tableName}" ("${options.references.column}")`)
 
     if (options.references.onDelete) {
       clauses.push(`ON DELETE ${options.references.onDelete}`)

@@ -17,6 +17,7 @@ function stringDataType(length = 255) {
   return {
     options: {
       dataType: 'VARCHAR',
+      dataTypeAlias: 'STRING',
       length,
       isPrimaryKey: false,
       isUnique: false,
@@ -73,11 +74,14 @@ function stringDataType(length = 255) {
     /**
      * Sets a reference to another table and column for this data type.
      *
-     * @param {any} model - The name of the referenced table/model.
+     * @param {object|string} modelOrTableName - The name of the referenced table/model.
      * @param {string} column - The name of the referenced column in the table/model.
      */
-    references(model, column) {
-      this.options.references = { model, column }
+    references(modelOrTableName, column) {
+      this.options.references = {
+        tableName: typeof modelOrTableName === 'string' ? modelOrTableName : modelOrTableName.tableName,
+        column
+      }
 
       return this
     },

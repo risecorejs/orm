@@ -6,6 +6,7 @@ function dateDataType() {
   return {
     options: {
       dataType: 'DATE',
+      dataTypeAlias: 'DATE',
       isUnique: false,
       isNullable: false,
       defaultValue: undefined,

@@ -6,6 +6,7 @@ function textDataType() {
   return {
     options: {
       dataType: 'TEXT',
+      dataTypeAlias: 'TEXT',
       isNullable: false,
       defaultValue: undefined,
       comment: undefined

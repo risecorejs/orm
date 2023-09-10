@@ -6,6 +6,7 @@ function serialDataType() {
   return {
     options: {
       dataType: 'SERIAL',
+      dataTypeAlias: 'SERIAL',
       isPrimaryKey: false,
       comment: undefined
     },

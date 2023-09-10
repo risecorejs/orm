@@ -6,6 +6,7 @@ function timeDataType() {
   return {
     options: {
       dataType: 'TIME',
+      dataTypeAlias: 'TIME',
       isNullable: false,
       defaultValue: undefined,
       checkConstraint: undefined,

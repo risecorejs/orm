@@ -25,6 +25,7 @@ function enumDataType(...enumerations) {
   return {
     options: {
       dataType: 'ENUM',
+      dataTypeAlias: 'ENUM',
       enumerations: enumerations,
       isNullable: false,
       defaultValue: undefined,

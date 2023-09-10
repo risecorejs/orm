@@ -6,6 +6,7 @@ function timestampDataType() {
   return {
     options: {
       dataType: 'TIMESTAMP',
+      dataTypeAlias: 'TIMESTAMP',
       isNullable: false,
       checkConstraint: undefined,
       comment: undefined

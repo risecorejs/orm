@@ -6,6 +6,7 @@ function booleanDataType() {
   return {
     options: {
       dataType: 'BOOLEAN',
+      dataTypeAlias: 'BOOLEAN',
       isNullable: false,
       defaultValue: undefined,
       comment: undefined
